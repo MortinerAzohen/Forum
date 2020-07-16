@@ -13,5 +13,8 @@ namespace Forum.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName="nvarchar(100)")]
         public string NickName { get; set; }
+        public int Rating { get; set; }
+        public DateTime MemberSince { get; set; }
+        public string ProfileImgUrl { get; set; }
     }
 }

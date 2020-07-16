@@ -1,0 +1,25 @@
+﻿@model Forum.ViewModels.Forum.ForumIndexModel
+
+@{ 
+    ViewBag.Title = "Forum";
+}
+<h1>
+    Forum
+</h1>
+<table class="table table-hover" id="forumIndexTable">
+    <tbody>
+        @foreach (var forum in Model.ForumList)
+        {
+            <tr>
+                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
+                    <td>
+                        @forum.Name
+                    </td>
+                </a>
+                    <td>
+                        @forum.Description
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>

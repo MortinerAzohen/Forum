@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Forum.Areas.Identity.Data;
+using Forum.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,9 @@ namespace Forum.Data
             : base(options)
         {
         }
-
+        public DbSet<Post> posts { get; set; }
+        public DbSet<ForumInstance> forums { get; set; }
+        public DbSet<PostReply> postReplies { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

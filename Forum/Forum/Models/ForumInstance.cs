@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Forum.Models
 {
-    public class Forum
+    public class ForumInstance
     {
         public int Id { get; set; }
         public string Title { get; set; }

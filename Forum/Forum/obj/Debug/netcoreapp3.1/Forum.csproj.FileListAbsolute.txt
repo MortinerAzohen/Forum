@@ -196,3 +196,4 @@ C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcor
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Forum.csproj.CoreCompileInputs.cache
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Forum.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Forum.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Forum\Index.cshtml.g.cs
