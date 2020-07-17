@@ -49,7 +49,11 @@ namespace Forum.Services
 
         public Post GetPost(int postId)
         {
-            throw new NotImplementedException();
+            return _context.posts.Where(p => p.Id == postId)
+                .Include(p=>p.Forum)
+                .Include(p => p.User)
+                .Include(p => p.Replies).ThenInclude(r=>r.User)
+                .First();
         }
 
         public IEnumerable<Post> GetPostsByForum(int id)

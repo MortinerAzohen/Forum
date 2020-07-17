@@ -1,0 +1,30 @@
+﻿@model Forum.ViewModels.Posts.PostViewModel
+
+<h1>
+    @Model.Title
+</h1>
+
+<div>
+    Author: @Model.AuthorName
+    Author rating : @Model.AuthorRating
+    Created: @Model.DatePosted
+</div>
+<div>
+    @Model.PostContent
+</div>
+@if(Model.Repies.Any())
+{
+    foreach(var reply in Model.Repies)
+    {
+<div>
+    <div>
+        Author: @reply.AuthorName
+        Author rating : @reply.AuthorRating
+        Created: @reply.DatePosted
+    </div>
+    <div>
+        @reply.ReplyContent
+    </div>
+</div>
+    }
+}

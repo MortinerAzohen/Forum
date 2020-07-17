@@ -1,0 +1,42 @@
+﻿@model Forum.ViewModels.Forum.ForumTopicModel
+
+@{ 
+    ViewBag.Title = Model.Forum.Name;
+}
+
+@if (Model.posts.Any())
+{
+    <table class="table table-bordered table-hover">
+        <tbody>
+            @foreach (var post in Model.posts)
+            {
+            <tr>
+                <td>
+                    @post.Title
+                </td>
+                <td>
+                    @post.Author
+                </td>
+                <td>
+                    @post.DatePosted
+                </td>
+                <td>
+                    @post.RepliesCount
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div>
+        <h3>
+            There are not posts in this subforum.<br/>
+            Why not
+            <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">
+                Create!
+            </a>
+        </h3>
+    </div>
+}

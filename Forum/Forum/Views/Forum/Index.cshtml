@@ -11,11 +11,12 @@
         @foreach (var forum in Model.ForumList)
         {
             <tr>
-                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
                     <td>
+                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
                         @forum.Name
+                    </a>
                     </td>
-                </a>
+                
                     <td>
                         @forum.Description
                     </td>
