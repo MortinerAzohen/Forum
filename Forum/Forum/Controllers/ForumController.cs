@@ -41,6 +41,7 @@ namespace Forum.Controllers
             var postListings = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
+                Author = post.User.UserName,
                 AuthorId = post.User.Id,
                 AuthorRating = post.User.Rating,
                 Title = post.Title,

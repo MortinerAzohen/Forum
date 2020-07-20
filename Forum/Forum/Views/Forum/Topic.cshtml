@@ -4,6 +4,7 @@
     ViewBag.Title = Model.Forum.Name;
 }
 
+<a asp-controller="post" asp-action="Create" asp-route-id=@Model.Forum.Id class="btn btn-newPost">Create Post</a>
 @if (Model.posts.Any())
 {
     <table class="table table-bordered table-hover">
@@ -12,7 +13,9 @@
             {
             <tr>
                 <td>
+                    <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
                     @post.Title
+                    </a>
                 </td>
                 <td>
                     @post.Author
