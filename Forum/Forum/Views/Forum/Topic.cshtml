@@ -3,43 +3,57 @@
 @{ 
     ViewBag.Title = Model.Forum.Name;
 }
+    <div class=" containter body-content">
+        <h2 style="padding:10px;">Forum subtitle: @Model.Forum.Name</h2>
+        <div style="margin:25px;">
+            @Model.Forum.Description
+        </div>
 
-<a asp-controller="post" asp-action="Create" asp-route-id=@Model.Forum.Id class="btn btn-newPost">Create Post</a>
-@if (Model.posts.Any())
-{
-    <table class="table table-bordered table-hover">
-        <tbody>
-            @foreach (var post in Model.posts)
-            {
-            <tr>
-                <td>
-                    <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
-                    @post.Title
+        @if (Model.posts.Any())
+        {
+            <table class="table table-bordered m-0">
+                <tbody>
+                    @foreach (var post in Model.posts)
+                    {
+                        <tr class="forum-row">
+                            <td>
+                                Post title:
+                                <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                                    @post.Title
+                                </a>
+                            </td>
+                            <td>
+                                Author: @post.Author
+                            </td>
+                            <td>
+                                Posted: @post.DatePosted
+                            </td>
+                            <td>
+                                Replies: @post.RepliesCount
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div style="margin:25px;">
+                <h3>
+                    There are no posts in this subforum.<br />
+                    Why not
+                    <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">
+                        Create!
                     </a>
-                </td>
-                <td>
-                    @post.Author
-                </td>
-                <td>
-                    @post.DatePosted
-                </td>
-                <td>
-                    @post.RepliesCount
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div>
-        <h3>
-            There are not posts in this subforum.<br/>
-            Why not
-            <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Forum.Id">
-                Create!
-            </a>
-        </h3>
+                </h3>
+            </div>
+        }
+        <div class="row">
+            <div class="col text-center">
+                <div class="btn-group">
+                    <a asp-controller="post" asp-action="Create" asp-route-id=@Model.Forum.Id class="btn btn-secondary">Create Post</a>
+                    <a asp-controller="forum" asp-action="index" class="btn btn-secondary">Go Back</a>
+                </div>
+            </div>
+        </div>
     </div>
-}

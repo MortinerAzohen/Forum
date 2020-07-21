@@ -16,5 +16,6 @@ namespace Forum.Interfaces
         Task Edit(int id, string newContent);
         Task Delete(int id);
         Task AddReply(PostReply reply);
+        IEnumerable<Post> GetLatestPosts(int nPosts);
     }
 }

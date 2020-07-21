@@ -1,8 +1,68 @@
-﻿@{
+﻿@model Forum.ViewModels.Home.HomeIndexModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container body-content">
+    <div class="row forntPageSplash">
+        <div class="col-md-6 forntPageLearn">
+            <div class="frontPageHeading"> Some test heading</div>
+            <p class="forntPageSubHeading">Some more headings for tests</p>
+            <div>
+                <form asp-controller="Search" asp-action="Search" method="post">
+                    <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Search..." />
+                </form>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+    <div class="row frontPageContent">
+        <h3 id="latestPosts">
+            Latest Posts
+        </h3>
+        <table class="table " id="leatestPostsTable">
+            <tbody>
+                @foreach(var post in Model.LatestPosts)
+                {
+                    <tr class="forum-row">
+                        <td>
+                            <div class="forumLogo" style="background-image: url(@post.ForumView.ForumImgUrl); background-size:100%"></div>
+                            <div class="postTitle">
+                                <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                                    @post.Title
+                                </a>
+                            </div>
+                            <div class="postSubTitle">
+                                @if (post.RepliesCount == 1)
+                                {
+                                    <span>
+                                        @post.RepliesCount Reply
+                                    </span>
+                                }
+                                @if (post.RepliesCount == 0)
+                                {
+                                    <span>
+                                        No replies.
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        @post.RepliesCount Replies
+                                    </span>
+                                }
+                                <span class="postUser">
+                                    Author: @post.Author
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
 </div>
+

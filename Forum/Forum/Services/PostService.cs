@@ -48,6 +48,13 @@ namespace Forum.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Post> GetLatestPosts(int nPosts)
+        {
+            return _context.posts.OrderByDescending(p => p.Created).Take(nPosts)
+                .Include(p=>p.User).Include(p=>p.Forum)
+                .Include(p=>p.Replies).ThenInclude(r=>r.User);
+        }
+
         public Post GetPost(int postId)
         {
             return _context.posts.Where(p => p.Id == postId)

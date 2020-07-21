@@ -3,21 +3,27 @@
 @{ 
     ViewBag.Title = "Forum";
 }
-<h1>
-    Forum
-</h1>
-<table class="table table-hover" id="forumIndexTable">
+
+<table class="table table-bordered">
     <tbody>
         @foreach (var forum in Model.ForumList)
         {
-            <tr>
-                    <td>
-                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
-                        @forum.Name
-                    </a>
+            <tr class="forum-row ">
+                    <td class="forum-logo-card">
+                        <div class="card" style="border:none">
+
+                                <a style="text-decoration:none;" asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
+                            <div class="card-body text-center" style="padding:0px;">
+                                    @forum.Name
+                            </div>
+                            <img class="card-img-bottom mx-auto" id="forumLogo" src="~/images/logo/logo.jpg" />
+                            <div class="card-footer">
+                                Posts:
+                            </div>
+                                </a>
+                        </div>
                     </td>
-                
-                    <td>
+                    <td style="text-align:justify; padding-right:20px;">
                         @forum.Description
                     </td>
             </tr>
