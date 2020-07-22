@@ -23,11 +23,6 @@ namespace Forum.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task AddReply(PostReply reply)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task Delete(int id)
         {
             throw new NotImplementedException();
@@ -67,6 +62,11 @@ namespace Forum.Services
         public IEnumerable<Post> GetPostsByForum(int id)
         {
             return _context.forums.Where(forum => forum.Id == id).First().Posts;
+        }
+        public async Task AddReply(PostReply reply)
+        {
+            _context.Add(reply);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -26,7 +26,9 @@ namespace Forum.Controllers
             var forums = _forumService.GetAllForums().Select(forum => new ForumListingModel { 
                 Id=forum.Id,
                 Description=forum.Description,
-                Name=forum.Title
+                Name=forum.Title,
+                ForumImgUrl=forum.ImageUrl
+
             });
             var model = new ForumIndexModel
             {

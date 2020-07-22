@@ -200,3 +200,4 @@ C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcor
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Forum\Topic.cshtml.g.cs
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Post\Index.cshtml.g.cs
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Post\Create.cshtml.g.cs
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Post\CreateReply.cshtml.g.cs

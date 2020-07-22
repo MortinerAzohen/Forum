@@ -1,4 +1,5 @@
-﻿using Forum.ViewModels.Reply;
+﻿using Forum.Models;
+using Forum.ViewModels.Reply;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Forum.ViewModels.Posts
         public int AuthorRating { get; set; }
         public string PostContent  { get; set; }
         public IEnumerable<PostReplyModel> Repies { get; set; }
+        public ForumInstance forum { get; set; }
 
 
     }

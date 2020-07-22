@@ -52,6 +52,7 @@
             <div class="col text-center">
                 <div class="btn-group">
                     <a asp-controller="post" asp-action="Create" asp-route-id=@Model.Forum.Id class="btn btn-secondary">Create Post</a>
+                    <img style="max-height:36px;" src="@Model.Forum.ForumImgUrl" alt="Alternate Text" />
                     <a asp-controller="forum" asp-action="index" class="btn btn-secondary">Go Back</a>
                 </div>
             </div>

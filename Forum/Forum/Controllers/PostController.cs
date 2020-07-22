@@ -38,7 +38,9 @@ namespace Forum.Controllers
                 AuthorId = post.User.Id,
                 AuthorName = post.User.UserName,
                 AuthorRating = post.User.Rating,
-                Repies = BuildPostReplies(post.Replies)
+                PostContent = post.Content,
+                Repies = BuildPostReplies(post.Replies),
+                forum=post.Forum
             };
             return View(model);
         }
@@ -54,6 +56,18 @@ namespace Forum.Controllers
             };
             return View(model);
         }
+        public IActionResult CreateReply(int id)
+        {
+            var post = _postService.GetPost(id);
+            var model = new NewReplyModelView
+            {
+                PostTitle = post.Title,
+                PostId=post.Id,
+                AuthorName=User.Identity.Name,
+                PostContent=post.Content
+            };
+            return View(model);
+        }
         [HttpPost]
         public async Task<IActionResult> AddPost(NewPostModelView newPostModelView)
         {
@@ -62,6 +76,27 @@ namespace Forum.Controllers
             var post = BuildPost(newPostModelView, user);
             _postService.Add(post).Wait();
             return RedirectToAction("Index", "Post",new { id = post.Id });
+        }
+        public async Task<IActionResult> AddReply(NewReplyModelView newReplyModelView)
+        {
+            var userId = _userManager.GetUserId(User);
+            var user = _userManager.FindByIdAsync(userId).Result;
+            var reply = BuildReply(newReplyModelView, user);
+            _postService.AddReply(reply).Wait();
+            return RedirectToAction("Index", "Post", new { id = reply.Post.Id });     
+        }
+
+        private PostReply BuildReply(NewReplyModelView newReplyModelView, ApplicationUser user)
+        {
+            var post = _postService.GetPost(newReplyModelView.PostId);
+            return new PostReply
+            {
+                Title = newReplyModelView.Title,
+                Content = newReplyModelView.ReplyContent,
+                Created = DateTime.Now,
+                User = user,
+                Post = post
+            };
         }
 
         private Post BuildPost(NewPostModelView newPostModelView, ApplicationUser user)
