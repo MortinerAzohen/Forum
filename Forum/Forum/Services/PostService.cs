@@ -38,9 +38,18 @@ namespace Forum.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Post> GetFiltredPosts(string search, int forumId)
+        {
+            return _context.posts.Where(p=>p.Forum.Id==forumId)
+                .Where(p => p.Title.Contains(search) || p.Content.Contains(search) || p.User.Email.Contains(search))
+                .Include(p => p.User).Include(p => p.Forum)
+                .Include(p => p.Replies).ThenInclude(r => r.User);
+        }
         public IEnumerable<Post> GetFiltredPosts(string search)
         {
-            throw new NotImplementedException();
+            return _context.posts.Where(p => p.Title.Contains(search) || p.Content.Contains(search) || p.User.Email.Contains(search))
+                .Include(p => p.User).Include(p => p.Forum)
+                .Include(p => p.Replies).ThenInclude(r => r.User);
         }
 
         public IEnumerable<Post> GetLatestPosts(int nPosts)

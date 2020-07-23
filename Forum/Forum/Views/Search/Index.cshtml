@@ -1,11 +1,11 @@
-﻿@model Forum.ViewModels.Home.HomeIndexModel
+﻿@model Forum.ViewModels.Search.SearchIndexModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="container body-content">
-    <div class="row forntPageSplash">
-        <div class="col-md-6 forntPageLearn">
+    <div class="row">
+        <div class="col-md-6">
             <div>
                 <form asp-controller="Search" asp-action="Search" method="post">
                     <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Search..." />
@@ -15,11 +15,11 @@
     </div>
     <div class="row">
         <h3>
-            Latest Posts
+            Search result:
         </h3>
         <table class="table ">
             <tbody>
-                @foreach(var post in Model.LatestPosts)
+                @foreach (var post in Model.LatestPosts)
                 {
                     <tr class="forum-row">
                         <td>
@@ -51,6 +51,8 @@
                                 <span class="postUser">
                                     Author: @post.Author
                                 </span>
+                                <span class="postUser">
+                                    Forum: @post.ForumView.Name</span>
                             </div>
                         </td>
                     </tr>
@@ -60,4 +62,3 @@
         </table>
     </div>
 </div>
-

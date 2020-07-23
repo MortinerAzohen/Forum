@@ -10,6 +10,7 @@ namespace Forum.Interfaces
     {
         Post GetPost(int postId);
         IEnumerable<Post> GetFiltredPosts(string search);
+        IEnumerable<Post> GetFiltredPosts(string search, int forumId);
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetPostsByForum(int id);
         Task Add(Post post);

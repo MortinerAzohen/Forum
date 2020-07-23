@@ -4,6 +4,16 @@
     ViewBag.Title = Model.Forum.Name;
 }
     <div class=" containter body-content">
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <form asp-controller="Search" asp-action="SearchInForum" method="post">
+                        <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Search..." />
+                        <input type="hidden" asp-for="Forum.Id"/>
+                    </form>
+                </div>
+            </div>
+        </div>
         <h2 style="padding:10px;">Forum subtitle: @Model.Forum.Name</h2>
         <div style="margin:25px;">
             @Model.Forum.Description
