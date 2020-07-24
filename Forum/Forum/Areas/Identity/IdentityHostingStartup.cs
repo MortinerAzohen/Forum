@@ -21,7 +21,8 @@ namespace Forum.Areas.Identity
                         context.Configuration.GetConnectionString("ForumDbContextConnection")));
 
                 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<ForumDbContext>();
+                        .AddRoles<IdentityRole>()
+                        .AddEntityFrameworkStores<ForumDbContext>();
             });
         }
     }

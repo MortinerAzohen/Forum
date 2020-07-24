@@ -18,14 +18,17 @@ namespace Forum.Services
         {
             _context = context;
         }
-        public Task Create(ForumInstance forum)
+        public async Task Create(ForumInstance forum)
         {
-            throw new NotImplementedException();
+            _context.Add(forum);
+            await _context.SaveChangesAsync();
         }
 
-        public Task Delete(int forumId)
+        public async Task Delete(int forumId)
         {
-            throw new NotImplementedException();
+            var forum = _context.forums.Where(f => f.Id == forumId).First();
+            _context.forums.Remove(forum);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<ApplicationUser> GetAllActiveUsers()
@@ -49,14 +52,22 @@ namespace Forum.Services
             return forum;
         }
 
-        public Task UpdateForumDescription(int forumId, string newDescritpion)
+        public async Task UpdateForumDescription(int forumId, string newDescritpion)
         {
-            throw new NotImplementedException();
+            var forum = _context.forums.Where(f => f.Id == forumId).First();
+            forum.Description = newDescritpion;
+            _context.Attach(forum);
+            _context.Entry(forum).Property("Description").IsModified = true;
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateForumTitle(int forumId, string newTitle)
+        public async Task UpdateForumTitle(int forumId, string newTitle)
         {
-            throw new NotImplementedException();
+            var forum = _context.forums.Where(f => f.Id == forumId).First();
+            forum.Title = newTitle;
+            _context.Attach(forum);
+            _context.Entry(forum).Property("Title").IsModified = true;
+            await _context.SaveChangesAsync();
         }
     }
 }

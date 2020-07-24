@@ -1,0 +1,27 @@
+﻿@model Forum.ViewModels.Administration.UserViewModel
+
+<div class=" container body-content">
+    <div class="row">
+         <div class="col-2 d-flex justify-content-center align-items-center">
+                 <img class="img-fluid" src="~/images/forum/user.png" />
+         </div>
+        <div class="col-8 p-0">
+            <ul class="list-group">
+                <li class="list-group-item disabled">
+                    User name: @Model.Email
+                </li>
+                <li class="list-group-item "> Change Email</li>
+                <li class="list-group-item disabled">User email: @Model.NickName</li>
+                <li class="list-group-item "> Change Nick Name</li>
+                <li class="list-group-item disabled">User rating: @Model.UserRating </li>
+            </ul>
+        </div>
+        <div claas="col-2">
+            <ul class="list-group">
+                <li class="list-group-item disabled">
+                    User roles:
+                </li>
+            </ul> 
+        </div>
+    </div>
+</div>

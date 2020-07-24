@@ -28,10 +28,12 @@
                         {
                             <li class="dropdown btn btn-light nav-item">
                                 <a href="#" class="dropdown-toggle text-dark nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Settings <span class="caret"></span></a>
-                                <ul class="dropdown-menu" >
+                                <ul class="dropdown-menu">
                                     <li role="separator" class="divider"></li>
                                     <li class="dropdown-header">Profile</li>
-                                    <li class="dropdown-item"><a asp-controller="Profile" asp-action="Detail" class="">My Profile</a></li>
+                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="Index" class="">My Profile</a></li>
+                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="CreateRole" class="">Create Role</a></li>
+
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <li role="separator" class="divider"></li>

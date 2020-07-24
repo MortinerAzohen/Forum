@@ -23,19 +23,29 @@ namespace Forum.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var post = _context.posts.Where(p => p.Id == id).First();
+            _context.Remove(post);
+            await _context.SaveChangesAsync();
         }
 
-        public Task Edit(int id, string newContent)
+        public async Task Edit(int id, string newContent)
         {
-            throw new NotImplementedException();
+            var post  = _context.posts.Where(p => p.Id == id).First();
+            post.Content = newContent;
+            _context.Attach(post);
+            _context.Entry(post).Property("Content").IsModified = true;
+            await _context.SaveChangesAsync();
+
         }
 
         public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.posts
+                .Include(p => p.User)
+                .Include(p => p.Forum)
+                .Include(p => p.Replies).ThenInclude(r => r.User);
         }
 
         public IEnumerable<Post> GetFiltredPosts(string search, int forumId)

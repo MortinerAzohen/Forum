@@ -27,6 +27,7 @@ namespace Forum.Controllers
         public IActionResult Index()
         {
             var model = BuildHomeIndexModel();
+
             return View(model);
         }
 
