@@ -42,6 +42,8 @@
         <div class="row">
             <div class="col text-center">
                 <div class="btn-group">
+                    <a asp-controller="post" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit Post</a>
+                    <a asp-controller="post" asp-action="delete" asp-route-id="@Model.Id" class="btn btn-secondary">Delete Post</a>
                     <a asp-controller="post" asp-action="CreateReply" asp-route-id="@Model.Id" class="btn btn-secondary">Create Reply</a>
                     <a asp-controller="forum" asp-action="topic" asp-route-id="@Model.forum.Id" class="btn btn-secondary">Go Back</a>
                 </div>

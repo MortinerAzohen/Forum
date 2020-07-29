@@ -31,15 +31,15 @@
                                 <ul class="dropdown-menu">
                                     <li role="separator" class="divider"></li>
                                     <li class="dropdown-header">Profile</li>
-                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="Index" class="">My Profile</a></li>
-                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="CreateRole" class="">Create Role</a></li>
+                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="Index">My Profile</a></li>
+                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="CreateRole">Create Role</a></li>
 
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <li role="separator" class="divider"></li>
                                         <li class="dropdown-header">Admin</li>
-                                        <li><a asp-controller="forum" asp-action="create">Create forum</a></li>
-                                        <li><a asp-controller="forum" asp-action="index">View Users</a></li>
+                                        <li class="dropdown-item"><a asp-controller="forum" asp-action="create">Create forum</a></li>
+                                        <li class="dropdown-item"><a asp-controller="forum" asp-action="index">View Users</a></li>
 
                                     }
                                 </ul>

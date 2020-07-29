@@ -30,7 +30,7 @@ namespace Forum.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(int id, string newContent)
+        public async Task EditContent(int id, string newContent)
         {
             var post  = _context.posts.Where(p => p.Id == id).First();
             post.Content = newContent;
@@ -85,6 +85,15 @@ namespace Forum.Services
         public async Task AddReply(PostReply reply)
         {
             _context.Add(reply);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditTitle(int id, string newTitle)
+        {
+            var post = _context.posts.Where(p => p.Id == id).First();
+            post.Title = newTitle;
+            _context.Attach(post);
+            _context.Entry(post).Property("Content").IsModified = true;
             await _context.SaveChangesAsync();
         }
     }

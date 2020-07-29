@@ -1,7 +1,5 @@
 ﻿using Forum.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Forum.Interfaces
@@ -14,7 +12,8 @@ namespace Forum.Interfaces
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetPostsByForum(int id);
         Task Add(Post post);
-        Task Edit(int id, string newContent);
+        Task EditContent(int id, string newContent);
+        Task EditTitle(int id, string newTitle);
         Task Delete(int id);
         Task AddReply(PostReply reply);
         IEnumerable<Post> GetLatestPosts(int nPosts);

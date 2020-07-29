@@ -28,7 +28,7 @@ namespace Forum.Controllers
         {
             var userId = _userManager.GetUserId(User);
             var user = await _userManager.FindByIdAsync(userId);
-            //var roles = await _userManager.GetRolesAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
             var model = new UserViewModel
             {
                 UserId = user.Id,
@@ -36,7 +36,7 @@ namespace Forum.Controllers
                 UserImgUrl = user.ProfileImgUrl,
                 UserRating = user.Rating,
                 NickName = user.NickName,
-                //UserRoles = roles
+                UserRoles = roles
             };
             return View(model);
         }
@@ -60,19 +60,17 @@ namespace Forum.Controllers
             await _roleManager.CreateAsync(identityRole);
             foreach(var user in model.Users)
             {
+                
                 if(user.IsInNewRole==true)
                 {
-                    //add role to user
-                }
-                else
-                {
-                    //dont add
+                    var appUser = await _userManager.FindByIdAsync(user.UserId);
+                    await _userManager.AddToRoleAsync(appUser, model.RoleName);
                 }
             }
             return RedirectToAction("Index","Home");
         }
 
-        private IEnumerable<RoleIsSelectedModel> BuildUserIsSelectedView(IQueryable<ApplicationUser> users)
+        private IList<RoleIsSelectedModel> BuildUserIsSelectedView(IQueryable<ApplicationUser> users)
         {
             return users.Select(user => new RoleIsSelectedModel
             { 
@@ -80,7 +78,7 @@ namespace Forum.Controllers
                 UserId = user.Id,
                 UserName = user.UserName,
                 IsInNewRole = false
-            });
+            }).ToList();
         }
     }
 }

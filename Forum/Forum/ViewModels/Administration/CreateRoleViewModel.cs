@@ -9,6 +9,6 @@ namespace Forum.ViewModels.Administration
     public class CreateRoleViewModel
     {
         public string RoleName { get; set; }
-        public IEnumerable<RoleIsSelectedModel> Users {get;set;}
+        public IList<RoleIsSelectedModel> Users {get;set;}
     }
 }

@@ -10,14 +10,14 @@
             <h4>
                 Select Users to add them to new role:
             </h4>
-            @foreach (var user in Model.Users)
+            @for (var i = 0; i < Model.Users.Count; i++)
             {
                 <div class="form-check">
 
-                    <input type="hidden" asp-for="@user.UserId" />
-                    <input class="form-check-input" asp-for="@user.IsInNewRole" />
+                    <input type="hidden" asp-for="@Model.Users[i].UserId" />
+                    <input class="form-check-input" asp-for="@Model.Users[i].IsInNewRole" />
                     <label class="form-check-label">
-                        @user.UserName
+                        @Model.Users[i].UserName
                     </label>
                 </div>
             }

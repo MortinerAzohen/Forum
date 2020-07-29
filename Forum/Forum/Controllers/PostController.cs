@@ -44,6 +44,34 @@ namespace Forum.Controllers
             };
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditPostViewModel model)
+        {
+            await _postService.EditContent(model.PostId, model.Content);
+            await _postService.EditTitle(model.PostId, model.Title);
+            return RedirectToAction("Index", "Post", new { id = model.PostId });
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var post = _postService.GetPost(id);
+            await _postService.Delete(post.Id);
+            return RedirectToAction("Topic", "Forum", new { id = post.Forum.Id });
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var userId = _userManager.GetUserId(User);
+            var user = await _userManager.FindByIdAsync(userId);
+            var post = _postService.GetPost(id);
+            var model = new EditPostViewModel
+            {
+                Content = post.Content,
+                Title =post.Title,
+                AuthorId = user.Id,
+                AuthorName=user.UserName,
+                PostId = post.Id
+            };
+            return View(model);
+        }
         public IActionResult Create(int id)
         {
             var forum = _forumService.GetById(id);
