@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum\\Forum.csproj": {}
+    "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum\\Forum.csproj": {
+    "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum\\Forum.csproj",
+        "projectUniqueName": "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum.csproj",
         "projectName": "Forum",
-        "projectPath": "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum\\Forum.csproj",
+        "projectPath": "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum.csproj",
         "packagesPath": "C:\\Users\\Mortiner\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\Forum\\obj\\",
+        "outputPath": "C:\\Users\\Mortiner\\source\\repos\\MortinerAzohen\\Forum\\Forum\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
