@@ -9,8 +9,15 @@
                 <div>
                     <form asp-controller="Search" asp-action="SearchInForum" method="post">
                         <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Search..." />
-                        <input type="hidden" asp-for="Forum.Id"/>
+                        <input type="hidden" asp-for="Forum.Id" />
                     </form>
+                    @if(User.IsInRole("Admin"))
+                    {
+                    <div class="btn-group">
+                        <a asp-controller="forum" asp-action="editforum" asp-route-forumId=@Model.Forum.Id class="btn btn-secondary">Edit Forum</a>
+                        <a onclick=" return deleteConfrimation()" asp-controller="forum" asp-action="deleteforum" asp-route-forumId="@Model.Forum.Id" class="btn btn-secondary" id="deleteButton">Delete Forum</a>
+                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -68,3 +75,11 @@
             </div>
         </div>
     </div>
+<script>
+    const deleteConfrimation = function ()
+        {
+        var alert = confirm("Do you want to remove this subforum?");
+        if (alert) {return true;}
+        else {return false;}
+        }
+</script>

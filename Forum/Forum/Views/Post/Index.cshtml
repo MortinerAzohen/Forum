@@ -1,51 +1,57 @@
 ﻿@model Forum.ViewModels.Posts.PostViewModel
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
 
 
-    <div class="body-content">
-        <h3>
-            @Model.Title
-        </h3>
-        <div>
-            Author: @Model.AuthorName
-            Author rating : @Model.AuthorRating
-            Created: @Model.DatePosted
-        </div>
-        <div style="background-color:bisque; padding:10px;">
-            @Model.PostContent
-        </div>
-        @if (Model.Repies.Any())
-        {
-            foreach (var reply in Model.Repies)
-            {
-                <div>
-                    <div>
-                        Author: @reply.AuthorName
-                        Author rating : @reply.AuthorRating
-                        Created: @reply.DatePosted
-                    </div>
-                    <div style="background-color:antiquewhite; padding:10px;">
-                        >
-                        @reply.ReplyContent
-                    </div>
-                </div>
-            }
-
-        }
-        else
+<div class="body-content">
+    <h3>
+        @Model.Title
+    </h3>
+    <div>
+        Author: @Model.AuthorName
+        Author rating : @Model.AuthorRating
+        Created: @Model.DatePosted
+    </div>
+    <div style="background-color:bisque; padding:10px;">
+        @Model.PostContent
+    </div>
+    @if (Model.Repies.Any())
+    {
+        foreach (var reply in Model.Repies)
         {
             <div>
-                There is no replies to this post.
-                Why not:
-                <a>Create</a>
-            </div>
-        }
-        <div class="row">
-            <div class="col text-center">
-                <div class="btn-group">
-                    <a asp-controller="post" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit Post</a>
-                    <a asp-controller="post" asp-action="delete" asp-route-id="@Model.Id" class="btn btn-secondary">Delete Post</a>
-                    <a asp-controller="post" asp-action="CreateReply" asp-route-id="@Model.Id" class="btn btn-secondary">Create Reply</a>
-                    <a asp-controller="forum" asp-action="topic" asp-route-id="@Model.forum.Id" class="btn btn-secondary">Go Back</a>
+                <div>
+                    Author: @reply.AuthorName
+                    Author rating : @reply.AuthorRating
+                    Created: @reply.DatePosted
+                </div>
+                <div style="background-color:antiquewhite; padding:10px;">
+                    >
+                    @reply.ReplyContent
                 </div>
             </div>
+        }
+
+    }
+    else
+    {
+        <div>
+            There is no replies to this post.
+            Why not:
+            <a>Create</a>
         </div>
+    }
+    <div class="row">
+        <div class="col text-center">
+            <div class="btn-group">
+                @if (User.IsInRole("Admin") || User.IsInRole("Mode") || (await AuthorizationService.AuthorizeAsync(User, Model.AuthorId, "UserPolicy")).Succeeded)
+                {
+                    <a asp-controller="post" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit Post</a>
+                    <a asp-controller="post" asp-action="delete" asp-route-id="@Model.Id" class="btn btn-secondary">Delete Post</a>
+                }
+                <a asp-controller="post" asp-action="CreateReply" asp-route-id="@Model.Id" class="btn btn-secondary">Create Reply</a>
+                <a asp-controller="forum" asp-action="topic" asp-route-id="@Model.forum.Id" class="btn btn-secondary">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>

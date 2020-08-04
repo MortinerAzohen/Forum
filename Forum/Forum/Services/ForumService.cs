@@ -2,6 +2,7 @@
 using Forum.Data;
 using Forum.Interfaces;
 using Forum.Models;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,15 @@ namespace Forum.Services
             _context.Add(forum);
             await _context.SaveChangesAsync();
         }
+        public async Task Edit(ForumInstance editedForum)
+        {
+            var forum = _context.forums.Where(f => f.Id == editedForum.Id).First();
+            forum.Description = editedForum.Description;
+            forum.Title = editedForum.Title;
+            forum.ImageUrl = editedForum.ImageUrl;
+            _context.Update(forum);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task Delete(int forumId)
         {
@@ -33,7 +43,8 @@ namespace Forum.Services
 
         public IEnumerable<ApplicationUser> GetAllActiveUsers()
         {
-            throw new NotImplementedException();
+            var users = _context.Users;
+            return users;
         }
 
         public IEnumerable<ForumInstance> GetAllForums()

@@ -205,3 +205,5 @@ C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcor
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Administration\Index.cshtml.g.cs
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Post\Edit.cshtml.g.cs
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Forum\CreateForum.cshtml.g.cs
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Forum\EditForum.cshtml.g.cs

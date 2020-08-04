@@ -12,6 +12,7 @@ using Forum.ViewModels.Reply;
 using Forum.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Forum.Controllers
 {
@@ -20,12 +21,15 @@ namespace Forum.Controllers
         private readonly IPostService _postService;
         private readonly IForumService _forumService;
         private static UserManager<ApplicationUser> _userManager;
+        private readonly IAuthorizationService _authorizationService;
 
-        public PostController(IPostService postService, IForumService forumService, UserManager<ApplicationUser>userManager)
+
+        public PostController(IAuthorizationService authorizationService,IPostService postService, IForumService forumService, UserManager<ApplicationUser>userManager)
         {
             _postService = postService;
             _forumService = forumService;
             _userManager = userManager;
+            _authorizationService = authorizationService;
         }
         public IActionResult Index(int id)
         {
@@ -47,8 +51,13 @@ namespace Forum.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditPostViewModel model)
         {
-            await _postService.EditContent(model.PostId, model.Content);
-            await _postService.EditTitle(model.PostId, model.Title);
+            var post = _postService.GetPost(model.PostId);
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, post, "UserPolicy");
+            if(authorizationResult.Succeeded)
+            {
+                await _postService.EditContent(model.PostId, model.Content);
+                await _postService.EditTitle(model.PostId, model.Title);
+            }
             return RedirectToAction("Index", "Post", new { id = model.PostId });
         }
         public async Task<IActionResult> Delete(int id)

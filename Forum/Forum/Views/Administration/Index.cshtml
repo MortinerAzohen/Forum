@@ -21,6 +21,12 @@
                 <li class="list-group-item disabled">
                     User roles:
                 </li>
+                @foreach (var role in Model.UserRoles)
+                {
+                    <li class="list-group-item">
+                        Role: @role
+                    </li>
+                }
             </ul> 
         </div>
     </div>

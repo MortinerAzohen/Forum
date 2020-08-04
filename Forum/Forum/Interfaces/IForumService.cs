@@ -12,7 +12,7 @@ namespace Forum.Interfaces
         ForumInstance GetById(int id);
         IEnumerable<ForumInstance> GetAllForums();
         IEnumerable<ApplicationUser> GetAllActiveUsers();
-
+        Task Edit(ForumInstance forum);
         Task Create(ForumInstance forum);
         Task Delete(int forumId);
         Task UpdateForumTitle(int forumId, string newTitle);
