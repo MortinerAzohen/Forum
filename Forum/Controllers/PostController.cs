@@ -52,8 +52,8 @@ namespace Forum.Controllers
         public async Task<IActionResult> Edit(EditPostViewModel model)
         {
             var post = _postService.GetPost(model.PostId);
-            var authorizationResult = await _authorizationService.AuthorizeAsync(User, post, "UserPolicy");
-            if(authorizationResult.Succeeded)
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, post.User.Id, "UserPolicy");
+            if(authorizationResult.Succeeded || User.IsInRole("Admin"))
             {
                 await _postService.EditContent(model.PostId, model.Content);
                 await _postService.EditTitle(model.PostId, model.Title);

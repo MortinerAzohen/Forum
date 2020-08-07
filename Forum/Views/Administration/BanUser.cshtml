@@ -1,0 +1,23 @@
+﻿@model Forum.ViewModels.Administration.BanUserViewModel
+
+<div class="container">
+    <h3>
+        Ban @Model.Email for :
+    </h3>
+    <div class="btn-group">
+        <form> 
+            <div class="radio">
+                <label><input type="radio" name="optradio" value="7" asp-for="@Model.BannedForXdays">Ban for 7 days</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio" value="14" asp-for="@Model.BannedForXdays">Ban for 14 days</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio" value="30" asp-for="@Model.BannedForXdays">Ban for 30 days</label>
+            </div>
+            <button type="submit" class="btn btn-secondary">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

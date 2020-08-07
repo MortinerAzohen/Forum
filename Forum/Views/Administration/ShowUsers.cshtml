@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Forum.ViewModels.Administration.UserListModel>
+
+    <div class="container body-content">
+        <div class="row">
+            <table class="table ">
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                    <tr class="forum-row">
+                        <td>
+                            <a asp-controller="administration" asp-action="ShowSpecificUser" asp-route-id="@user.UserId" class="btn btn-secondary">
+                                Details
+                            </a>
+                        </td>
+                        <td>
+                            Email: @user.Email
+                        </td>
+                        <td>
+                            Is banned: @user.IsBanned
+                        </td>
+                        <td>
+                            @if (user.IsBanned == true)
+                            {
+                                <span> Banned till: @user.LockoutEnd</span>
+                            }
+                            else
+                            {
+                                <span>
+                                    User is not banned
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            User rating: @user.UserRating
+                        </td>
+                        <td>
+                            User Posts: @user.UserPostList.Count()
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>

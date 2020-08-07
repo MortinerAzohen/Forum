@@ -36,7 +36,7 @@ namespace Forum.Controllers
                 Name = forum.Title,
                 ForumImgUrl = CreateCorectUrlString(forum.ImageUrl)
 
-            }); ;
+            }); 
             var model = new ForumIndexModel
             {
                 ForumList = forums
@@ -46,7 +46,7 @@ namespace Forum.Controllers
 
         private string CreateCorectUrlString(string imageUrl)
         {
-            var corectUrlString = "";
+            string corectUrlString;
             if (string.IsNullOrEmpty(imageUrl))
             {
                 corectUrlString = "/images/forum/fb.jpg";

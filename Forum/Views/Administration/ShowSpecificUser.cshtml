@@ -1,0 +1,77 @@
+﻿@model Forum.ViewModels.Administration.UserListModel
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 img">
+                <img src="~/images/forum/user.png" alt="" class="img-rounded">
+            </div>
+            <div class="col-md-4 details">
+                <p>
+                    Email:@Model.Email<br /><br />
+                    Banned till:@Model.LockoutEnd<br /><br />
+                    Rating:@Model.UserRating<br /><br />
+                    Posts: @Model.UserPostList.Count()<br /><br />
+                </p>
+            </div>
+            <div class="col-md-5 details">
+                <div class="btn-group">
+                    <button onclick="showPosts()" class="btn btn-secondary"> Show Posts</button>
+                    <a asp-controller="administration" asp-action="banuser" asp-route-userId="@Model.UserId" class="btn btn-secondary"> Ban user</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="roleList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Show Roles
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="roleList">
+                            @foreach (var role in Model.UserRoles)
+                            {
+                                <span class="dropdown-item"> @role</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered m-0" id="tableWithPosts" style="display:none;">
+            <tbody>
+                @foreach (var post in Model.UserPostList)
+                {
+                <tr class="forum-row">
+                    <td>
+                        Post title:
+                        <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                            @post.Title
+                        </a>
+                    </td>
+                    <td>
+                        Forum: @post.forum.Title
+                    </td>
+                    <td>
+                        Posted: @post.DatePosted
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-controller="post" asp-action="edit" asp-route-id="@post.Id" class="btn btn-secondary">Edit Post</a>
+                            <a asp-controller="post" asp-action="delete" asp-route-id="@post.Id" class="btn btn-secondary">Delete Post</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+@section scripts
+{
+<script>
+    function showPosts()
+    {
+        var x = document.getElementById("tableWithPosts");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+}

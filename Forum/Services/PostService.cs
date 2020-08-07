@@ -96,5 +96,13 @@ namespace Forum.Services
             _context.Entry(post).Property("Content").IsModified = true;
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<Post> GetPostsByAuthor(string authorId)
+        {
+            return _context.posts.Where(p=>p.User.Id==authorId)
+                                .Include(p => p.User)
+                                .Include(p => p.Forum)
+                                .Include(p => p.Replies).ThenInclude(r => r.User);
+        }
     }
 }

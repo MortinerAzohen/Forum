@@ -11,7 +11,7 @@ namespace Forum.Interfaces
     {
         ForumInstance GetById(int id);
         IEnumerable<ForumInstance> GetAllForums();
-        IEnumerable<ApplicationUser> GetAllActiveUsers();
+        IEnumerable<ApplicationUser> GetAllUsers();
         Task Edit(ForumInstance forum);
         Task Create(ForumInstance forum);
         Task Delete(int forumId);

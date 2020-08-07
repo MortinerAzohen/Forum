@@ -41,7 +41,7 @@ namespace Forum.Services
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<ApplicationUser> GetAllActiveUsers()
+        public IEnumerable<ApplicationUser> GetAllUsers()
         {
             var users = _context.Users;
             return users;
@@ -80,5 +80,6 @@ namespace Forum.Services
             _context.Entry(forum).Property("Title").IsModified = true;
             await _context.SaveChangesAsync();
         }
+        
     }
 }

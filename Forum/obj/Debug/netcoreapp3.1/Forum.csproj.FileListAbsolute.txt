@@ -416,3 +416,6 @@ C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.1\Forum.dll
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.1\Forum.pdb
 C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.1\Forum.genruntimeconfig.cache
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ShowUsers.cshtml.g.cs
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ShowSpecificUser.cshtml.g.cs
+C:\Users\Mortiner\source\repos\MortinerAzohen\Forum\Forum\obj\Debug\netcoreapp3.1\Razor\Views\Administration\BanUser.cshtml.g.cs
