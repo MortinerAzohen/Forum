@@ -57,7 +57,7 @@ namespace Forum.Controllers
         public async Task<IActionResult> BanUser(BanUserViewModel model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
-            user.LockoutEnd = DateTime.Now.AddDays(model.BannedForXdays);
+            await _userManager.SetLockoutEndDateAsync(user, DateTime.Now.AddDays(model.BannedForXdays));
     
             return RedirectToAction("ShowUsers","administration");
         }

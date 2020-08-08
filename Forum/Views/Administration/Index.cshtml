@@ -1,5 +1,6 @@
 ﻿@model Forum.ViewModels.Administration.UserViewModel
 
+
 <div class=" container body-content">
     <div class="row">
          <div class="col-2 d-flex justify-content-center align-items-center">
@@ -10,9 +11,11 @@
                 <li class="list-group-item disabled">
                     User name: @Model.Email
                 </li>
-                <li class="list-group-item "> Change Email</li>
-                <li class="list-group-item disabled">User email: @Model.NickName</li>
-                <li class="list-group-item "> Change Nick Name</li>
+                <li class="list-group-item ">
+                    <a asp-area="Identity" asp-page="/Account/Manage/Email"> Change Email</a>
+                </li>
+                <li class="list-group-item disabled">User email: @Model.Email</li>
+                <li class="list-group-item "> <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword"> Change Password</a></li>
                 <li class="list-group-item disabled">User rating: @Model.UserRating </li>
             </ul>
         </div>

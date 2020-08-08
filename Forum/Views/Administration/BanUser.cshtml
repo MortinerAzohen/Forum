@@ -5,16 +5,9 @@
         Ban @Model.Email for :
     </h3>
     <div class="btn-group">
-        <form> 
-            <div class="radio">
-                <label><input type="radio" name="optradio" value="7" asp-for="@Model.BannedForXdays">Ban for 7 days</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="optradio" value="14" asp-for="@Model.BannedForXdays">Ban for 14 days</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="optradio" value="30" asp-for="@Model.BannedForXdays">Ban for 30 days</label>
-            </div>
+        <form asp-controller="Administration" asp-action="BanUser" method="post"> 
+            <input type="hidden" asp-for="@Model.UserId"/>
+            <input type="number" asp-for="@Model.BannedForXdays" />
             <button type="submit" class="btn btn-secondary">
                 Submit
             </button>
