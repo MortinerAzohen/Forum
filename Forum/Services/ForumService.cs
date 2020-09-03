@@ -36,7 +36,7 @@ namespace Forum.Services
 
         public async Task Delete(int forumId)
         {
-            var forum = _context.forums.Where(f => f.Id == forumId).First();
+            var forum = _context.forums.Where(f => f.Id == forumId).Include(forum => forum.Posts).First();
             _context.forums.Remove(forum);
             await _context.SaveChangesAsync();
         }

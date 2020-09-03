@@ -192,7 +192,7 @@ namespace Forum.Controllers
                 Id = forum.Id,
                 Description = forum.Description,
                 Name = forum.Title,
-                ForumImgUrl = forum.ImageUrl,
+                ForumImgUrl = CreateCorectUrlString(forum.ImageUrl),
                 PostsCount = forum.Posts.Count()
             };
         }

@@ -2,7 +2,7 @@
 
 <h1>Edit Forum</h1>
 
-<form asp-action="EditForum" asp-controller="Forum" method="post" id="addPostForm">
+<form asp-action="EditForum" asp-controller="Forum" method="post" id="addPostForm" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Title">Current Title: @Model.Title</label>
         <input asp-for="Title" class="form-control" />
@@ -23,3 +23,13 @@
     <button type="submit" class="btn btn-secondary">Finish</button>
     <a class="btn btn-secondary" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.Id">Cancel</a>
 </form>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
+}
