@@ -9,13 +9,13 @@
 + .Net Core Authorization
 
 ## Current functionality
-+ [x] regitration
++ [x] registration
 + [x] login/logout
 + [x] adding posts
 + [x] adding replies
 + [x] creating forum with new logo
 + [x] edit forum
-+ [x] delete forum with confiramtion alert
++ [x] delete forum with confirmation alert
 + [x] ban user functionality
 + [x] user / admin roles
 + [x] global search 
@@ -46,6 +46,6 @@
 ## Search Bar
 ![Search](readme/searchbar.gif)
 
-## Bammed user tries to login 
+## Banned user tries to login 
 ![Banned](readme/banneduser.gif)
 
