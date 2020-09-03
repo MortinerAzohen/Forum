@@ -32,12 +32,13 @@
                                     <li role="separator" class="divider"></li>
                                     <li class="dropdown-header">Profile</li>
                                     <li class="dropdown-item"><a asp-controller="Administration" asp-action="Index">My Profile</a></li>
-                                    <li class="dropdown-item"><a asp-controller="Administration" asp-action="CreateRole">Create Role</a></li>
 
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <li role="separator" class="divider"></li>
                                         <li class="dropdown-header">Admin</li>
+                                        <li class="dropdown-item"><a asp-controller="Administration" asp-action="CreateRole">Create Role</a></li>
+                                        <li class="dropdown-item"><a asp-controller="Administration" asp-action="AddUserToRole">Role Menager</a></li>
                                         <li class="dropdown-item"><a asp-controller="forum" asp-action="createforum">Create forum</a></li>
                                         <li class="dropdown-item"><a asp-controller="administration" asp-action="showusers">View Users</a></li>
 

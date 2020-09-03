@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Forum.Areas.Identity.Data;
 using Forum.Interfaces;
 using Forum.ViewModels.Administration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,8 @@ namespace Forum.Controllers
             };
             return View(model);
         }
-        [HttpGet] //ban user not working must be edited
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> BanUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -54,6 +56,7 @@ namespace Forum.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> BanUser(BanUserViewModel model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
@@ -61,6 +64,7 @@ namespace Forum.Controllers
     
             return RedirectToAction("ShowUsers","administration");
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ShowSpecificUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -86,6 +90,7 @@ namespace Forum.Controllers
             };
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult ShowUsers()
         {
             var users = _forumService.GetAllUsers();
@@ -128,6 +133,7 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateRole()
         {
             var users = _userManager.Users;
@@ -137,7 +143,79 @@ namespace Forum.Controllers
             };
             return View(model);
         }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddUserToRole()
+        {
+            var model = new RolesMenagerViewModel
+            {
+                listOfUsersWithRoles = await BuildUserWithRoles()
+            };
+            return View(model);
+        }
+
+        private async Task<List<AddUserToRolesViewModel>> BuildUserWithRoles()
+        {
+            var roles = _roleManager.Roles;
+            var users = _userManager.Users;
+            var model = new List<AddUserToRolesViewModel>();
+            foreach (var user in users)
+            {
+                var userRoles = new List<UserIsInRoles>();
+                foreach (var role in roles)
+                {
+                    if (await _userManager.IsInRoleAsync(user, role.Name))
+                    {
+                        userRoles.Add(new UserIsInRoles
+                        {
+                            RoleName = role.Name,
+                            IsInRole = true
+                        });
+                    }
+                    else
+                    {
+                        userRoles.Add(new UserIsInRoles
+                        {
+                            RoleName = role.Name,
+                            IsInRole = false
+                        });
+                    }
+                }
+                model.Add(new AddUserToRolesViewModel
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    UserEmail = user.Email,
+                    UserRoles = userRoles
+                });
+            }
+            return model;
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        public async Task<IActionResult> AddUserToRole(RolesMenagerViewModel model)
+        {
+            foreach(var userWithRoles in model.listOfUsersWithRoles)
+            {
+                var appUser = await _userManager.FindByIdAsync(userWithRoles.UserId);
+                foreach(var role in userWithRoles.UserRoles)
+                {
+                    if((await _userManager.IsInRoleAsync(appUser,role.RoleName)==true) && (role.IsInRole==false))
+                    {
+                        await _userManager.RemoveFromRoleAsync(appUser, role.RoleName);
+                    }
+                    else if ((await _userManager.IsInRoleAsync(appUser, role.RoleName)==false) && (role.IsInRole == true))
+                    {
+                        await _userManager.AddToRoleAsync(appUser, role.RoleName);
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
             IdentityRole identityRole = new IdentityRole
@@ -168,5 +246,6 @@ namespace Forum.Controllers
                 IsInNewRole = false
             }).ToList();
         }
+        
     }
 }

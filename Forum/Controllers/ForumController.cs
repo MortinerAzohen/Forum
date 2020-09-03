@@ -34,7 +34,8 @@ namespace Forum.Controllers
                 Id = forum.Id,
                 Description = forum.Description,
                 Name = forum.Title,
-                ForumImgUrl = CreateCorectUrlString(forum.ImageUrl)
+                ForumImgUrl = CreateCorectUrlString(forum.ImageUrl),
+                PostsCount = forum.Posts.Count()
 
             }); 
             var model = new ForumIndexModel
@@ -191,7 +192,8 @@ namespace Forum.Controllers
                 Id = forum.Id,
                 Description = forum.Description,
                 Name = forum.Title,
-                ForumImgUrl = forum.ImageUrl
+                ForumImgUrl = forum.ImageUrl,
+                PostsCount = forum.Posts.Count()
             };
         }
     }

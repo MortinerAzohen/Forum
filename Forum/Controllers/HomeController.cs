@@ -59,7 +59,8 @@ namespace Forum.Controllers
                 Id = post.Forum.Id,
                 Name = post.Forum.Title,
                 Description = post.Forum.Description,
-                ForumImgUrl = post.Forum.ImageUrl
+                ForumImgUrl = post.Forum.ImageUrl,
+                PostsCount = post.Forum.Posts.Count()
             };
         }
 

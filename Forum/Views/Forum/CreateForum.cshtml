@@ -11,13 +11,13 @@
         <input asp-for="Description" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="ForumImg"></label>
+        <label asp-for="ForumImg">Forum Image</label>
         <div class="custom-file">
-            <input asp-for="ForumImg" class="form-control custom-file-input">
+            <input asp-for="ForumImg"  class="form-control custom-file-input">
             <label class="custom-file-label">Choose file...</label>
         </div>
     </div>
-    <button type="submit" class="btn">Submit Post</button>
+    <button type="submit" class="btn btn-secondary">Create Forum!</button>
 </form>
 @section scripts{
     <script>

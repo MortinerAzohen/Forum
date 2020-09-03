@@ -83,6 +83,10 @@ namespace Forum.Controllers
         }
         public IActionResult Create(int id)
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index","Home"); //temporary, must create register view other than basic
+            }
             var forum = _forumService.GetById(id);
             var model = new NewPostModelView
             {
